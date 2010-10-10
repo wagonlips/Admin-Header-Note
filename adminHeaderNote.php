@@ -20,13 +20,9 @@ function admin_header_note_install() {
 function admin_header_note_remove() {
   delete_option('admin_header_note_data');
 }
-/*
-wp_tiny_mce( false , // true makes the editor "teeny"
-  array(
-    "editor_selector" => "admin_header_note_data"
-  )
-);
-*/
+
+add_action('admin_head', 'wp_tiny_mce(false)');
+add_filter('teeny_mce_buttons', 'teeny_mce_buttons');
 if ( is_admin() ){
   /* Call the html code */
   add_action('admin_menu', 'admin_header_note_admin_menu');
@@ -46,9 +42,10 @@ function admin_header_note_html_page() {
 <tr valign="top">
 <th width="92" scope="row">Enter Text</th>
 <td width="406">
-<textarea class="admin_header_note_data" name="admin_header_note_data" id="admin_header_note_data">
+<textarea class="admin_header_note_area" name="admin_header_note_area" id="admin_header_note_area">
 <?php echo get_option('admin_header_note_data'); ?>
 </textarea>
+<?php the_editor($id = 'content', $media_buttons = true); ?>
 </td>
 </tr>
 </table>
