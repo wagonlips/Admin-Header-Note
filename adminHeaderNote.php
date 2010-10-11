@@ -28,27 +28,19 @@ if ( is_admin() ){
   }
 }
 function admin_header_note_html_page() {
-// Pluggin' in some tiny_mce stuff.
-add_action('admin_head', 'wp_tiny_mce(false)');
-add_filter('teeny_mce_buttons', 'teeny_mce_buttons');
+
 ?>
 <div>
-<h2>Admin Header Note Options</h2>
+<h2>Admin Header Note </h2>
 
 <form method="post" action="options.php">
 <?php wp_nonce_field('update-options'); ?>
 
-<table width="510">
-<tr valign="top">
-<th width="92" scope="row">Enter Text</th>
-<td width="406">
-<textarea class="admin_header_note_area" name="admin_header_note_area" id="admin_header_note_area">
+<div id="admin_header_note_div">
+<textarea class="admin_header_note_area" name="admin_header_note_area" id="admin_header_note_area" rows="20" cols="100">
 <?php echo get_option('admin_header_note_data'); ?>
 </textarea>
-<?php the_editor($id = 'content', $media_buttons = true); ?>
-</td>
-</tr>
-</table>
+</div>
 
 <input type="hidden" name="action" value="update" />
 <input type="hidden" name="page_options" value="admin_header_note_data" />
