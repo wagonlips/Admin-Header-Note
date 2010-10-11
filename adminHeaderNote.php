@@ -20,9 +20,6 @@ function admin_header_note_install() {
 function admin_header_note_remove() {
   delete_option('admin_header_note_data');
 }
-
-add_action('admin_head', 'wp_tiny_mce(false)');
-add_filter('teeny_mce_buttons', 'teeny_mce_buttons');
 if ( is_admin() ){
   /* Call the html code */
   add_action('admin_menu', 'admin_header_note_admin_menu');
@@ -31,6 +28,9 @@ if ( is_admin() ){
   }
 }
 function admin_header_note_html_page() {
+// Pluggin' in some tiny_mce stuff.
+add_action('admin_head', 'wp_tiny_mce(false)');
+add_filter('teeny_mce_buttons', 'teeny_mce_buttons');
 ?>
 <div>
 <h2>Admin Header Note Options</h2>
